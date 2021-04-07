@@ -50,7 +50,7 @@ function clear() {
   result = 0;
 }
 
-function addNumDisplay () {
+function addNumDisplay() {
   if (isClick) {
     display.textContent = '';
     isClick = false;
@@ -62,25 +62,25 @@ function addNumDisplay () {
 operators.forEach(operator => operator.addEventListener('click', () => {
   if (!leftOperand) {
     leftOperand = parseFloat(display.textContent);
-    sign = `${operator.textContent}`;
   } else if (!rightOperand) {
     rightOperand = parseFloat(display.textContent)
     result = operate(sign, leftOperand, rightOperand)
     display.textContent = result;
   } else {
-    sign = `${operator.textContent}`;
     leftOperand = result;
     rightOperand = parseFloat(display.textContent);
     result = operate(sign, leftOperand, rightOperand);
     display.textContent = result;
   }
   isClick = true;
+  sign = `${operator.textContent}`
 
 }));
 
 // Create equal button
 equal.addEventListener('click', () => {
-  rightOperand = +display.textContent;
+  leftOperand = result
+  rightOperand = parseFloat(display.textContent);
   if (!rightOperand || !leftOperand) {
     return
   }
