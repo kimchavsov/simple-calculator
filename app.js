@@ -1,4 +1,4 @@
-// Variables
+// Variables Initialize
 const display = document.querySelector('.display');
 const operators =  document.querySelectorAll(".operator");
 const equal = document.querySelector("#equal");
@@ -13,8 +13,8 @@ let result;
 let isClickOperator;
 let dotClick = false;
 let isEqual = false;
-
 display.textContent = '0'
+
 // calculation function
 function add(num1, num2) {
   return num1 + num2;
@@ -59,6 +59,7 @@ function clear() {
   isEqual = false;
 }
 
+// Add number to the display
 function addNumDisplay() {
   if (isClickOperator) {
     display.textContent = '';
@@ -71,28 +72,29 @@ function addNumDisplay() {
   display.textContent += `${this.textContent}`;
 }
 
+// When the dot button click
 function addDecimal() {
   if (!dotClick) {
     display.textContent += '.'
     dotClick = true
   } 
 }
-
+// When equal click
 function equalClick() {
   if (result) {
     leftOperand = result
   }
   rightOperand = display.textContent;
-  if (!rightOperand || !leftOperand) {
-    return
-  }
-  if (!isEqual) {
-    result = operate(sign,leftOperand,rightOperand);
-    display.textContent = `${result}`;
-    isEqual = true;
-  }
+  if (rightOperand && leftOperand) {
+    if (!isEqual) {
+      result = operate(sign,leftOperand,rightOperand);
+      display.textContent = `${result}`;
+      isEqual = true;
+    }
+  } 
 }
 
+// When delete key is pressed
 function deleteClick() {
   if (!isClickOperator && !isEqual) {
   display.textContent = display.textContent.substring(0, display.textContent.length - 1)
